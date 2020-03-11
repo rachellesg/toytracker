@@ -20,6 +20,9 @@ render() {
             <a className="dropdown-item" href="/dashboard">
               Dashboard
             </a>
+            <a className="dropdown-item" href="/likes">
+              My Likes
+            </a>
             <div className="dropdown-divider"></div>
             <a className="dropdown-item" href="/logout">
               Log Out

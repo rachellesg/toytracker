@@ -277,9 +277,10 @@ module.exports = (db) => {
       db.toytracker.checkAllLikes(userId, (error, results) => {
         let collectionData = {
           userId: userId,
-          likes: results
+          collection: results,
+          hashedLogin: request.cookies.hashedlogin
         }; 
-        response.send(collectionData);
+        response.render('likes', collectionData);
         console.log(collectionData);
       })
     }
