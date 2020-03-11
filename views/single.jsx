@@ -15,6 +15,16 @@ class SingleCollection extends React.Component {
         let showItems;
         let likeButtonUrl;
         let likeButton;
+        console.log("LIKE YES OR NOOOOOOOO???????", this.props.likeState)
+        if (this.props.likeState === true) {
+            console.log("already liked this");
+            likeButtonUrl = "";
+            likeButton = <a href={likeButtonUrl}><i class="material-icons">favorite</i></a>
+        } else {
+            console.log("didn't like this");
+            likeButtonUrl = "/collections/" + this.props.collection.id + "/like";
+            likeButton = <a href={likeButtonUrl}><i class="material-icons">favorite_border</i></a>
+        }
         if (this.props.collection.username == this.props.username) {
             console.log("user matches");
             deleteUrl = "/collections/" + this.props.collection.id + "?_method=delete";
@@ -22,8 +32,6 @@ class SingleCollection extends React.Component {
             adminButton = <button type="button" className="btn-default" data-toggle="modal" data-target="#addNewItemModal"><i className="material-icons">add</i> Add New Item To Collection</button>;
         } else {
             adminButton = "";
-            likeButtonUrl = "/collections/" + this.props.collection.id + "/like";
-            likeButton = <a href={likeButtonUrl}><i class="material-icons">favorite_border</i></a>
         }
         if (this.props.page) {
             title = "Toy Tracker  |  " + this.props.page;

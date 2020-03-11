@@ -54,11 +54,11 @@ CREATE TABLE IF NOT EXISTS items (
 CREATE TABLE IF NOT EXISTS item_likes (
   ID SERIAL PRIMARY KEY,
   user_id INTEGER REFERENCES users(ID),
-  item_id INTEGER REFERENCES items(ID)
+  item_id INTEGER REFERENCES items(ID) UNIQUE
 );
 
 CREATE TABLE IF NOT EXISTS collection_likes (
   ID SERIAL PRIMARY KEY,
   user_id INTEGER REFERENCES users(ID),
-  collection_id INTEGER REFERENCES collections(ID)
+  collection_id INTEGER REFERENCES collections(ID) UNIQUE
 );

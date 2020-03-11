@@ -15,7 +15,7 @@ class UserProfile extends React.Component {
             collectionSection = <Collections collection={this.props.collection}/>;
         }
         return (
-            <Layout hashedLogin={this.props.hashedLogin} title={this.props.title}>
+            <Layout hashedLogin={this.props.hashedLogin} title={this.props.page}>
                 <h1>Collections</h1>
                 {collectionSection}
             </Layout>

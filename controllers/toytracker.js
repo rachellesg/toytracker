@@ -44,6 +44,7 @@ module.exports = (db) => {
 
     let singleCollectionPage = (request, response) => {
       let collectionId = request.params.id;
+      let userId = request.cookies.id;
       db.toytracker.collections(collectionId, (error, results) => {
         // console.log("COLLECTION XXX", results)
         let data = {
@@ -51,6 +52,10 @@ module.exports = (db) => {
           collection: results
         }
         db.toytracker.itemCollections(collectionId, (error, results1) => {
+        db.toytracker.collectionCheck(userId, collectionId, (error, likeResults) => {
+          let checkIfLike = {
+            likeResults: likeResults
+          }
         db.toytracker.addItemSelections((error, results2) => {
           db.toytracker.addItemSelections2((error, results3) => {
             let collectionData = {
@@ -60,14 +65,16 @@ module.exports = (db) => {
               collection: data.collection,
               hashedLogin: request.cookies.hashedlogin,
               username: request.cookies.username,
-              userId: request.cookies.id
+              userId: request.cookies.id,
+              likeState: checkIfLike.likeResults
             }
-            if (results === "404") {
-              response.redirect('/');
-            } else {
-              console.log("ADD ITEM FORM RESULTSSSSSS", collectionData);
-              response.render('single', collectionData);
-            }
+            console.log("ADD ITEM FORM RESULTSSSSSS", collectionData);
+            response.render('single', collectionData);
+            // if (results === "404") {
+            //   response.redirect('/');
+            // } else {
+            // }
+          })
           })
         })
         })
@@ -256,17 +263,12 @@ module.exports = (db) => {
       collectionId = request.params.id;
       console.log(userId, collectionId);
       db.toytracker.collectionLike(userId, collectionId, (error, results) => {
-        let data = {
+        let collectionData = {
           userId: userId,
-          collectionId: collectionId
-        }
-        db.toytracker.collectionLike(data, (error, results) => {
-          let collectionData = {
-            userId: data.userId,
-            collection: results
-          }; 
-          console.log(collectionData);
-        })
+          likes: results
+        }; 
+        response.redirect('back');
+        console.log(collectionData);
       })
     };
 

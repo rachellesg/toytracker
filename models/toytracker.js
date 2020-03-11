@@ -306,8 +306,8 @@ module.exports = (dbPoolInstance) => {
     console.log("COLLECTION LIKEEEEEE", values);
     dbPoolInstance.query(query, values, (error, result) => {
       if (error) {
-        callback(error, null);
         console.log(error);
+        callback(error, null);
       } else {
         console.log("++++++++");
         console.log("COLLECTION LIKED:::::::+++++++", result.rows[0]);
@@ -317,19 +317,28 @@ module.exports = (dbPoolInstance) => {
     })
   };
 
-  let collectionCheck = (userId, callback) => {
-    let query = "SELECT * FROM collection_likes WHERE user_id=$1";
-    let values = [userId];
+  let collectionCheck = (userId, collectionId, callback) => {
+    let query = "SELECT * FROM collection_likes WHERE user_id=$1 AND collection_id=$2";
+    let values = [userId, collectionId];
     console.log("COLLECTION LIKEEEEEE", values);
     dbPoolInstance.query(query, values, (error, result) => {
       if (error) {
-        callback(error, null);
         console.log(error);
+        callback(error, null);
       } else {
         console.log("++++++++");
-        console.log("COLLECTION LIKED:::::::+++++++", result.rows[0]);
+        console.log("CHECK COLLECTION LIKE:::::::+++++++", result.rows[0]);
         console.log("++++++++");
-        callback(error, result.rows[0])
+        // callback(error, result.rows[0])
+        if (result.rows[0] != undefined) {
+          result = true;
+          callback(error, result)
+          console.log(result);
+        } else {
+          result = false;
+          callback(error, result)
+          console.log(result);
+        }
       }
     })
   };
