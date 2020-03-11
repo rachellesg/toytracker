@@ -158,10 +158,10 @@ module.exports = (dbPoolInstance) => {
         console.log(error);
       } else {
         console.log("UMMMMM OK --- entered password: ", receiveData.userPassword);
-        console.log("HELLO +++ received::: ", result.rows[0].password);
+        // console.log("HELLO +++ received::: ", result.rows[0].password);
         if (result.rows[0] === undefined) {
           callback("User Doesn't Exist");
-          result = "User does not exist";
+          result = "403";
           callback(error, result);
         } else {
           if (result.rows[0].password === receiveData.userPassword) {
