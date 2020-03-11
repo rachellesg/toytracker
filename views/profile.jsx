@@ -28,23 +28,24 @@ class UserPublicProfile extends React.Component {
             <Layout hashedLogin={this.props.hashedLogin} title={title}>
                 <div className="user-profile">
                     <div className="row dashboard-top">
-                        <div className="col-sm-9 d-flex dashboard-stats row">
-                            <div className="col-sm-2">
+                    <div className="col-sm-12"><h1 className="text-left">{this.props.userdetails.name}'s profile</h1></div>
+                        <div className="col-4 row">
+                        <div className="col-sm-4">
                                 <img src={url} />
                             </div>
-                            <div className="col-sm-10">
-                            <h2>{this.props.userdetails.name}'s profile</h2>
-                                <strong>Name:</strong> {this.props.userdetails.name} <br />
-                                <strong>Email:</strong> {this.props.userdetails.email}
-                            </div>
+                        <div className="col-sm-7">
+                            <strong>Name:</strong> {this.props.userdetails.name} <br />
+                            <strong>Email:</strong> {this.props.userdetails.email}
                         </div>
-                        <div className="col-sm-3 text-right">
-                            <br />
-                            {/* {numberOfCollections} */}
                         </div>
+
+                        <div className="col-8">
+                            <h2>Latest Collections</h2>
+                            {collectionSection}
+                        </div>
+
                     </div>
-                    <h1>Latest Collections</h1>
-                    {collectionSection}
+                    
                 </div>
             </Layout>
         )
