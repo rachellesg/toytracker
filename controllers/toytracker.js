@@ -149,18 +149,14 @@ module.exports = (db) => {
       }
       console.log("++ CONTROLLER ++", receiveData);
       db.toytracker.logInUser(receiveData, (error, results) => {
-        if (results = "403") {
-          response.redirect('back')
-        } else {
-          const userId = results.id;
-          const userName = results.name;
-          const hashedLogin = sha256(SALT + results.id);
-          console.log("USER LOGGED IN XX", userId, userName, hashedLogin);
-          response.cookie('id', userId);
-          response.cookie('username', userName)
-          response.cookie('hashedlogin', hashedLogin);
-          response.redirect('/');
-        }
+        const userId = results.id;
+        const userName = results.name;
+        const hashedLogin = sha256(SALT + results.id);
+        console.log("USER LOGGED IN XX", userId, userName, hashedLogin);
+        response.cookie('id', userId);
+        response.cookie('username', userName)
+        response.cookie('hashedlogin', hashedLogin);
+        response.redirect('/');
       })
     }
 

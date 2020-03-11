@@ -149,18 +149,18 @@ module.exports = (dbPoolInstance) => {
   }
 
   let logInUser = (receiveData, callback) => {
-    let query = "SELECT * FROM users WHERE email=$1";
-    let values = [receiveData.userEmail];
-    console.log("+++++++ mdoels ... ", values);
-    dbPoolInstance.query(query, values, (error, result) => {
+    let query = "SELECT * FROM users WHERE email='"+receiveData.userEmail+"'";
+    console.log("+++++++ mdoels ... ",query);
+    dbPoolInstance.query(query, (error, result) => {
       if (error) {
         callback(error, null);
         console.log(error);
       } else {
         console.log("UMMMMM OK --- entered password: ", receiveData.userPassword);
-        // console.log("HELLO +++ received::: ", result.rows[0].password);
+        console.log("HELLO +++ received::: ", result.rows);
+        // callback(error, result.rows[0]);
         if (result.rows[0] === undefined) {
-          callback("User Doesn't Exist");
+          // callback("User Doesn't Exist");
           result = "403";
           callback(error, result);
         } else {
