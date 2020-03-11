@@ -1,0 +1,52 @@
+CREATE TABLE IF NOT EXISTS users (
+  ID SERIAL PRIMARY KEY,
+  name TEXT NOT NULL,
+  email TEXT NOT NULL UNIQUE,
+  password TEXT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS companies (
+  ID SERIAL PRIMARY KEY,
+  name TEXT  NOT NULL UNIQUE
+);
+
+CREATE TABLE IF NOT EXISTS brands (
+  ID SERIAL PRIMARY KEY,
+  name TEXT  NOT NULL UNIQUE
+);
+
+-- CREATE TABLE IF NOT EXISTS tags (
+--   ID SERIAL PRIMARY KEY,
+--   name TEXT
+-- );
+
+-- CREATE TABLE IF NOT EXISTS series (
+--   ID SERIAL PRIMARY KEY,
+--   name TEXT NOT NULL,
+--   company INTEGER REFERENCES companies(ID),
+--   brand INTEGER REFERENCES brands(ID)
+-- );
+
+CREATE TABLE IF NOT EXISTS collections (
+  ID SERIAL PRIMARY KEY,
+  name TEXT NOT NULL,
+  created TIMESTAMPTZ DEFAULT Now(),
+  user_id INTEGER REFERENCES users(ID)
+  -- image_url STRING
+);
+
+CREATE TABLE IF NOT EXISTS items (
+  ID SERIAL PRIMARY KEY,
+  name TEXT NOT NULL,
+  year INTEGER NOT NULL,
+  company INTEGER REFERENCES companies(ID),
+  collection INTEGER REFERENCES collections(ID),
+  -- series INTEGER REFERENCES series(ID),
+  brand INTEGER REFERENCES brands(ID),
+  -- tags INTEGER REFERENCES tags(ID),
+  user_id INTEGER REFERENCES users(ID),
+  condition TEXT NOT NULL,
+  price INTEGER,
+  created TIMESTAMPTZ DEFAULT Now(),
+  image_url TEXT
+);
