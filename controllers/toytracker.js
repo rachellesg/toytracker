@@ -268,7 +268,21 @@ module.exports = (db) => {
           likes: results
         }; 
         response.redirect('back');
-        console.log(collectionData);
+        // console.log(collectionData);
+      })
+    };
+
+    let unlikeCollection = (request, response) => {
+      userId = request.cookies.id;
+      collectionId = request.params.id;
+      console.log(userId, collectionId);
+      db.toytracker.collectionUnlike(userId, collectionId, (error, results) => {
+        let collectionData = {
+          userId: userId,
+          likes: results
+        }; 
+        response.redirect('back');
+        // console.log(collectionData);
       })
     };
 
@@ -295,7 +309,8 @@ module.exports = (db) => {
         singleCollectionPage, addCollection, allCollectionPage, deleteCollection,
         userPage, dashboard,
         signUp, logIn, createUser, logInUser, logOutUser,
-        addItem, deleteItem, likeCollection, allLikes
+        addItem, deleteItem, likeCollection, allLikes,
+        unlikeCollection
     };
 
 }

@@ -317,6 +317,23 @@ module.exports = (dbPoolInstance) => {
     })
   };
 
+  let collectionUnlike = (userId, collectionId, callback) => {
+    let query = "DELETE FROM collection_likes WHERE user_id=$1 AND collection_id=$2";
+    let values = [userId, collectionId];
+    console.log("COLLECTION DELETE PLZZZZ", values);
+    dbPoolInstance.query(query, values, (error, result) => {
+      if (error) {
+        console.log(error);
+        callback(error, null);
+      } else {
+        console.log("++++++++");
+        console.log("COLLECTION UNLIKED:::::::+++++++", result.rows[0]);
+        console.log("++++++++");
+        callback(error, result.rows[0])
+      }
+    })
+  };
+
   let collectionCheck = (userId, collectionId, callback) => {
     let query = "SELECT * FROM collection_likes WHERE user_id=$1 AND collection_id=$2";
     let values = [userId, collectionId];
@@ -362,6 +379,7 @@ module.exports = (dbPoolInstance) => {
     allCollections, collections, addCollection, deleteCollection,
     createUser, logInUser, userPage, dashboard, dashboardCollection,
     addItemSelections, addItemSelections2, addItem, itemCollections,
-    deleteItemsFromCollection, deleteItem, collectionLike, collectionCheck, checkAllLikes
+    deleteItemsFromCollection, deleteItem, collectionLike, collectionCheck, checkAllLikes,
+    collectionUnlike
   };
 };

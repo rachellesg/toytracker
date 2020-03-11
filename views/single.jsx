@@ -18,8 +18,8 @@ class SingleCollection extends React.Component {
         console.log("LIKE YES OR NOOOOOOOO???????", this.props.likeState)
         if (this.props.likeState === true) {
             console.log("already liked this");
-            likeButtonUrl = "";
-            likeButton = <a href={likeButtonUrl}><i class="material-icons">favorite</i></a>
+            likeButtonUrl = "/collections/unlike/" + this.props.collection.id + "?_method=delete";
+            likeButton = <form className="unlike-form" action={likeButtonUrl} method="POST"><button className="btn-unlike"><i class="material-icons">favorite</i></button></form>;
         } else {
             console.log("didn't like this");
             likeButtonUrl = "/collections/" + this.props.collection.id + "/like";

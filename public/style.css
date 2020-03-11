@@ -118,6 +118,16 @@ button:focus {
     background: #c48672;
 }
 
+.unlike-form {
+    display: inline;
+}
+
+.btn-unlike {
+    background: none;
+    border: none;    color: #c48672;
+
+}
+
 .modal-content {
     background: #ffffff;
     border: 0;

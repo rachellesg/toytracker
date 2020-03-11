@@ -26,6 +26,7 @@ module.exports = (app, allModels, upload) => {
   app.get('/collections', toytrackerControllerCallbacks.allCollectionPage);
   app.post('/collections/add', toytrackerControllerCallbacks.addCollection);
   app.get('/collections/:id/like', toytrackerControllerCallbacks.likeCollection);
+  app.delete('/collections/unlike/:id/', toytrackerControllerCallbacks.unlikeCollection);
 
   app.get('/collections/:id', toytrackerControllerCallbacks.singleCollectionPage);
 
