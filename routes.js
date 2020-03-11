@@ -1,5 +1,3 @@
-
-
 module.exports = (app, allModels, upload) => {
   var multer = require('multer');
   var upload = multer({dest: './public/uploads/'});
@@ -24,6 +22,8 @@ module.exports = (app, allModels, upload) => {
   app.delete('/collections/:id', toytrackerControllerCallbacks.deleteCollection);
   app.get('/collections', toytrackerControllerCallbacks.allCollectionPage);
   app.post('/collections/add', toytrackerControllerCallbacks.addCollection);
+  app.get('/collections/:id/like', toytrackerControllerCallbacks.likeCollection);
+
   app.get('/collections/:id', toytrackerControllerCallbacks.singleCollectionPage);
 
   app.delete('/items/:id', toytrackerControllerCallbacks.deleteItem);
@@ -36,10 +36,8 @@ module.exports = (app, allModels, upload) => {
   app.get('/logout', toytrackerControllerCallbacks.logOutUser);
 
   app.get('/dashboard', toytrackerControllerCallbacks.dashboard);
+  
   app.get('/users/:id', toytrackerControllerCallbacks.userPage);
 
   app.get('/*', toytrackerControllerCallbacks.homepage);
-
-
-  //app.get('/pokemons/:id', pokemons.getPokemon);
 };

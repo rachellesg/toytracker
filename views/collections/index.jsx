@@ -11,7 +11,7 @@ class Collections extends React.Component {
         let latestCollections;
         let userUrl;
         if (this.props.collection != undefined) {
-            latestCollections = this.props.collection.map (item => {
+            latestCollections = this.props.collection.map (item => {;
                 pageUrl = "/collections/" + item.id;
                 userUrl = "/users/" + item.user_id;
                 return <div className="collection-listings col-sm-3">

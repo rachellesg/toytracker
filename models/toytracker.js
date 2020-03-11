@@ -298,13 +298,47 @@ module.exports = (dbPoolInstance) => {
         callback(error, result.rows)
       }
     })
-  }
+  };
+
+  let collectionLike = (userId, collectionId, callback) => {
+    let query = "INSERT INTO collection_likes (collection_id, user_id) VALUES ($1, $2)";
+    let values = [collectionId, userId];
+    console.log("COLLECTION LIKEEEEEE", values);
+    dbPoolInstance.query(query, values, (error, result) => {
+      if (error) {
+        callback(error, null);
+        console.log(error);
+      } else {
+        console.log("++++++++");
+        console.log("COLLECTION LIKED:::::::+++++++", result.rows[0]);
+        console.log("++++++++");
+        callback(error, result.rows[0])
+      }
+    })
+  };
+
+  let collectionCheck = (userId, callback) => {
+    let query = "SELECT * FROM collection_likes WHERE user_id=$1";
+    let values = [userId];
+    console.log("COLLECTION LIKEEEEEE", values);
+    dbPoolInstance.query(query, values, (error, result) => {
+      if (error) {
+        callback(error, null);
+        console.log(error);
+      } else {
+        console.log("++++++++");
+        console.log("COLLECTION LIKED:::::::+++++++", result.rows[0]);
+        console.log("++++++++");
+        callback(error, result.rows[0])
+      }
+    })
+  };
 
   return {
     homepage, 
     allCollections, collections, addCollection, deleteCollection,
     createUser, logInUser, userPage, dashboard, dashboardCollection,
     addItemSelections, addItemSelections2, addItem, itemCollections,
-    deleteItemsFromCollection, deleteItem
+    deleteItemsFromCollection, deleteItem, collectionLike, collectionCheck
   };
 };

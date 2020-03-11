@@ -20,7 +20,8 @@ class Items extends React.Component {
                 <div className="items-listings-content">
                 <img src={thing.image_url} className="img-fluid" /> <br />
                 <div className="collection-listings-name">
-                    {thing.name} {deleteButton} </div>
+                    {thing.name}</div>
+                    {deleteButton} 
                     Brand: <span className="tags-brand">{thing.brand}</span>, Company: <span className="tags-company">{thing.company}</span> <br />
                     Year: <span className="tags-year">{thing.year}</span>, Condition: <span className="tags-condition">{thing.condition}</span>, Price: <span className="tags-price">${thing.price}</span><br />
                     <em className="small">{moment(thing.created).fromNow()}</em>

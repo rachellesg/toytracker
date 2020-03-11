@@ -251,6 +251,30 @@ module.exports = (db) => {
       })
     }
 
+    let likeCollection = (request, response) => {
+      userId = request.cookies.id;
+      collectionId = request.params.id;
+      console.log(userId, collectionId);
+      db.toytracker.collectionLike(userId, collectionId, (error, results) => {
+        let data = {
+          userId: userId,
+          collectionId: collectionId
+        }
+        db.toytracker.collectionLike(data, (error, results) => {
+          let collectionData = {
+            userId: data.userId,
+            collection: results
+          }; 
+          console.log(collectionData);
+        })
+      })
+    };
+
+    let checkLike = (request, response) => {
+      userId = request.cookies.id;
+      console.log(userId, collectionId);
+    }
+
     /**
      * ===========================================
      * Export controller functions as a module
@@ -261,7 +285,7 @@ module.exports = (db) => {
         singleCollectionPage, addCollection, allCollectionPage, deleteCollection,
         userPage, dashboard,
         signUp, logIn, createUser, logInUser, logOutUser,
-        addItem, deleteItem
+        addItem, deleteItem, likeCollection
     };
 
 }

@@ -302,6 +302,11 @@ input[type="file"] {
     padding: 15px 0;
 }
 
+.collection-listings-name i {
+    font-size: 20px;
+    color: #d43f69;
+}
+
 .collection-listings-name a {
     font-weight: bold;
     color: #deab9a;

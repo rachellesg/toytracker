@@ -13,6 +13,8 @@ class SingleCollection extends React.Component {
         let deleteButton = "";
         let deleteUrl;
         let showItems;
+        let likeButtonUrl;
+        let likeButton;
         if (this.props.collection.username == this.props.username) {
             console.log("user matches");
             deleteUrl = "/collections/" + this.props.collection.id + "?_method=delete";
@@ -20,6 +22,8 @@ class SingleCollection extends React.Component {
             adminButton = <button type="button" className="btn-default" data-toggle="modal" data-target="#addNewItemModal"><i className="material-icons">add</i> Add New Item To Collection</button>;
         } else {
             adminButton = "";
+            likeButtonUrl = "/collections/" + this.props.collection.id + "/like";
+            likeButton = <a href={likeButtonUrl}><i class="material-icons">favorite_border</i></a>
         }
         if (this.props.page) {
             title = "Toy Tracker  |  " + this.props.page;
@@ -36,7 +40,7 @@ class SingleCollection extends React.Component {
                 <section className="single-collection">
                     <div className="row">
                         <div className="col-12 text-center mb-3">
-                            <h1>{this.props.collection.name}</h1>
+                            <h1>{this.props.collection.name} {likeButton}</h1>
                             posted by {this.props.collection.username}
                             {/* / last updated: {moment(this.props.collection.created).fromNow()} */}
                         </div>
