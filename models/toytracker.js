@@ -320,7 +320,7 @@ module.exports = (dbPoolInstance) => {
   let collectionCheck = (userId, collectionId, callback) => {
     let query = "SELECT * FROM collection_likes WHERE user_id=$1 AND collection_id=$2";
     let values = [userId, collectionId];
-    console.log("COLLECTION LIKEEEEEE", values);
+    // console.log("COLLECTION LIKEEEEEE", values);
     dbPoolInstance.query(query, values, (error, result) => {
       if (error) {
         console.log(error);
@@ -343,11 +343,25 @@ module.exports = (dbPoolInstance) => {
     })
   };
 
+  let checkAllLikes = (userId, callback) => {
+    let query = 'SELECT collections.id as id, collections.name as name, collections.user_id as user_id, collections.created as created FROM collection_likes INNER JOIN collections on (collection_likes.collection_id = collections.id) WHERE collection_likes.user_id=$1';
+    let values = [userId];
+    dbPoolInstance.query(query, values, (error, result) => {
+      if (error) {
+        console.log(error);
+        callback(error, null);
+      } else {
+        console.log("::::::::::::CHECK ALL LIKES:::::::+++++++", result.rows);
+        callback(error, result.rows)
+      }
+    })
+  }
+
   return {
     homepage, 
     allCollections, collections, addCollection, deleteCollection,
     createUser, logInUser, userPage, dashboard, dashboardCollection,
     addItemSelections, addItemSelections2, addItem, itemCollections,
-    deleteItemsFromCollection, deleteItem, collectionLike, collectionCheck
+    deleteItemsFromCollection, deleteItem, collectionLike, collectionCheck, checkAllLikes
   };
 };

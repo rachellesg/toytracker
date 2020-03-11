@@ -18,6 +18,9 @@ module.exports = (app, allModels, upload) => {
 
   app.get('/', toytrackerControllerCallbacks.homepage);
   // app.get('/error', toytrackerControllerCallbacks.error);
+
+  app.get('/dashboard', toytrackerControllerCallbacks.dashboard);
+  app.get('/likes', toytrackerControllerCallbacks.allLikes);
   
   app.delete('/collections/:id', toytrackerControllerCallbacks.deleteCollection);
   app.get('/collections', toytrackerControllerCallbacks.allCollectionPage);
@@ -35,7 +38,6 @@ module.exports = (app, allModels, upload) => {
   app.post('/login', toytrackerControllerCallbacks.logInUser);
   app.get('/logout', toytrackerControllerCallbacks.logOutUser);
 
-  app.get('/dashboard', toytrackerControllerCallbacks.dashboard);
   
   app.get('/users/:id', toytrackerControllerCallbacks.userPage);
 

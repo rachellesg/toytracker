@@ -272,9 +272,16 @@ module.exports = (db) => {
       })
     };
 
-    let checkLike = (request, response) => {
+    let allLikes = (request, response) => {
       userId = request.cookies.id;
-      console.log(userId, collectionId);
+      db.toytracker.checkAllLikes(userId, (error, results) => {
+        let collectionData = {
+          userId: userId,
+          likes: results
+        }; 
+        response.send(collectionData);
+        console.log(collectionData);
+      })
     }
 
     /**
@@ -287,7 +294,7 @@ module.exports = (db) => {
         singleCollectionPage, addCollection, allCollectionPage, deleteCollection,
         userPage, dashboard,
         signUp, logIn, createUser, logInUser, logOutUser,
-        addItem, deleteItem, likeCollection
+        addItem, deleteItem, likeCollection, allLikes
     };
 
 }
