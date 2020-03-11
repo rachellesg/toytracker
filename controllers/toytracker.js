@@ -138,7 +138,7 @@ module.exports = (db) => {
         response.cookie('id', userId);
         response.cookie('username', userName)
         response.cookie('hashedlogin', hashedLogin);
-        response.redirect('/');
+        response.redirect('/users/'+userId);
       });
     }
 
