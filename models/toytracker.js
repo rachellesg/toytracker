@@ -361,7 +361,7 @@ module.exports = (dbPoolInstance) => {
   };
 
   let checkAllLikes = (userId, callback) => {
-    let query = 'SELECT collections.id as id, collections.name as name, collections.user_id as user_id, collections.created as created FROM collection_likes INNER JOIN collections on (collection_likes.collection_id = collections.id) WHERE collection_likes.user_id=$1';
+    let query = 'SELECT collections.id as id, collections.name as name, collections.user_id as user_id, users.name as username, collections.created as created FROM collection_likes INNER JOIN collections on (collection_likes.collection_id = collections.id) WHERE collection_likes.user_id=$1';
     let values = [userId];
     dbPoolInstance.query(query, values, (error, result) => {
       if (error) {

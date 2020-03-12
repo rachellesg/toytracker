@@ -145,7 +145,7 @@ module.exports = (db) => {
         response.cookie('id', userId);
         response.cookie('username', userName)
         response.cookie('hashedlogin', hashedLogin);
-        response.redirect('/users/'+userId);
+        response.redirect('dashboard');
       });
     }
 

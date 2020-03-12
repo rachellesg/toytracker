@@ -30,7 +30,7 @@ class UserPublicProfile extends React.Component {
                     <div className="row dashboard-top">
                     <div className="col-sm-12"><h1 className="text-left">{this.props.userdetails.name}'s profile</h1></div>
                         <div className="col-4 row">
-                        <div className="col-sm-4 p-0">
+                        <div className="col-sm-4">
                                 <img src={url} />
                             </div>
                         <div className="col-sm-7">
